@@ -4,52 +4,52 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    @Override
+      EditText eTID ;
+      Button btn1;
+      TextView tV1;
+
+      @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d("Life cycle event", "onCreate()");
 
+        eTID = findViewById(R.id.ETid);
+        btn1 = findViewById(R.id.btn1);
+        tV1 = findViewById(R.id.tV1);
 
-    }
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String idNumber = eTID.toString().trim();
+                String dob = idNumber.substring(0,6);
+                int gender = Integer.parseInt(Character.toString(idNumber.charAt(6)));
+                String myGender;
+                if(gender<5){
+                   myGender = "Female";
+                }
+                else
+                    myGender = "Male";
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d("Life cycle event", "onStart()");
-    }
+                int Nationality = Integer.parseInt(Character.toString(idNumber.charAt(6)));
+                String myNationality;
+                if(Nationality == 0)
+                    myNationality = "South African";
+                else
+                    myNationality = "Non-SouthAfrican";
+                String Text = "date of Birth is "+dob+"\n"+"Gender is "+myGender+"\n"+"Nationality: "+myNationality+"\n";
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d("Life cycle event", "onResume()");
-    }
+                tV1.setText(Text);
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d("Life cycle event", "onPause()");
+            }
 
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d("Life cycle event", "onStop()");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d("Life cycle event", "onDestroy()");
-    }
-    @Override
-    protected  void  onRestart(){
-        super.onRestart();
-        Log.d("Life cycle event", "onRestart()");
+        });
     }
 }

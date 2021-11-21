@@ -2,4 +2,5 @@
     <string name="app_name">My Java Application</string>
     <string name="hint_id">Please Enter Id Number</string>
     <string name="submit_id">Submit</string>
+    <string name="Txt_Name">TextView</string>
 </resources>
