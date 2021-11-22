@@ -24,12 +24,14 @@ public class MainActivity extends AppCompatActivity {
         eTID = findViewById(R.id.ETid);
         btn1 = findViewById(R.id.btn1);
         tV1 = findViewById(R.id.tV1);
+          tV1.setVisibility(View.GONE);
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String idNumber = eTID.toString().trim();
-                String dob = idNumber.substring(0,6);
+                String idNumber = eTID.toString();
+                String d = idNumber.substring(0,6);
+                int dob = Integer.parseInt(d);
                 int gender = Integer.parseInt(Character.toString(idNumber.charAt(6)));
                 String myGender;
                 if(gender<5){
@@ -38,15 +40,16 @@ public class MainActivity extends AppCompatActivity {
                 else
                     myGender = "Male";
 
-                int Nationality = Integer.parseInt(Character.toString(idNumber.charAt(6)));
+                int Nationality = Integer.parseInt(Character.toString(idNumber.charAt(10)));
                 String myNationality;
                 if(Nationality == 0)
-                    myNationality = "South African";
+                    myNationality = getString(R.string.SA_Citizen);
                 else
-                    myNationality = "Non-SouthAfrican";
-                String Text = "date of Birth is "+dob+"\n"+"Gender is "+myGender+"\n"+"Nationality: "+myNationality+"\n";
+                    myNationality = getString(R.string.non_S_A_Citizen);
+                String Text = getString(R.string.Dob)+dob+getString(R.string.Newlilne)+getString(R.string.MyGender)+myGender+getString(R.string.Newlilne)+getString(R.string.MyNationale)+myNationality+getString(R.string.Newlilne);
 
                 tV1.setText(Text);
+                tV1.setVisibility(View.VISIBLE);
 
             }
 
